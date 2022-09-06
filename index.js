@@ -11,7 +11,7 @@ const orderRoutes = require("./routes/order");
 const stripeRoutes = require("./routes/stripe");
 const paymentRoute = require("./routes/payment");
 const subscriptionRoutes = require("./routes/subscription");
-
+// mongodb://127.0.0.1:27017/ecommerce
 var bodyParser = require("body-parser");
 
 const cors = require("cors");
