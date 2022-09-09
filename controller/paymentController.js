@@ -16,8 +16,9 @@ const getPayPalRedirectUrl = async (req, res) => {
         payment_method: "paypal",
       },
       redirect_urls: {
-        return_url: "http://localhost:3000/api/payment/success",
-        cancel_url: "http://localhost:3000/cancel",
+        return_url:
+          "https://blooming-eyrie-20553.herokuapp.com/api/payment/success",
+        cancel_url: "https://blooming-eyrie-20553.herokuapp.com/cancel",
       },
       transactions: [
         {
