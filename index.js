@@ -27,6 +27,7 @@ app.use(bodyParser.json());
 
 // console.log('jj',__dirname+'/.env');
 const mongoDb = async () => {
+  // const URI = "mongodb://127.0.0.1:27017/ecommerce" ||
   const URI = process.env.MONGOURL;
 
   console.log("URI", URI);

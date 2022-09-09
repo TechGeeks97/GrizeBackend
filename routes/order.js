@@ -7,16 +7,20 @@ const {
   updateOrder,
   getAllOrder,
   getUserOrders,
+  getOrder,
+  confirmOrder,
 } = require("../controller/orderController");
-const Order = require("../models/Order");
 
 router.post("/", verifyToken, getUserSubscription, createOrder);
 
 router.put("/:id", verifyToken, updateOrder);
 
+router.get("/:productId", verifyToken, getUserSubscription, getOrder);
+
 router.get("/find/:userId", verifyToken, getUserSubscription, getUserOrders);
 //get all
 router.get("/", verifyToken, getAllOrder);
+router.put("/buy/:id", verifyToken, confirmOrder);
 
 //get monthly income
 // router.get("/income",verifyToken,authorization,async(req,res)=>{
