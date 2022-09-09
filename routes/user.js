@@ -3,7 +3,7 @@ const { verifyToken, authorization } = require("../middleware/verifyToken");
 
 const User = require("../models/User");
 const Product = require("../models/Order");
-
+const FeedBack = require("../models/UserProductRequest");
 router.put("/:id", verifyToken, async (req, res) => {
   console.log("req", req.params);
   const user = await User.findOne({ _id: req.params.id });
@@ -23,6 +23,37 @@ router.put("/:id", verifyToken, async (req, res) => {
     res.status(200).send({ status: 200, message: updateUser });
   } catch (err) {
     res.status(500).send({ status: 500, route: "update user", message: err });
+  }
+});
+
+router.post("/addProduct", verifyToken, async (req, res) => {
+  const newProductRequest = new FeedBack({
+    productName: req.body.productName,
+    userDetails: {
+      name: res.user.username,
+      email: res.user.email,
+    },
+  });
+  try {
+    const saveUserRequest = await newProductRequest.save();
+
+    res
+      .status(200)
+      .send({ status: 200, data: "Request for Product add send successfully" });
+  } catch (err) {
+    res
+      .status(500)
+      .send({ status: 500, route: "user product request", message: err });
+  }
+});
+router.get("/allProductsRequest", verifyToken, async (req, res) => {
+  try {
+    const allProductRequest = await FeedBack.find().lean();
+    res.status(200).send({ status: 200, data: allProductRequest });
+  } catch (err) {
+    res
+      .status(500)
+      .send({ status: 500, route: "user product request", message: err });
   }
 });
 router.delete("/:id", verifyToken, async (req, res) => {
