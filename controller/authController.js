@@ -7,6 +7,8 @@ const register = async (req, res) => {
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
+    location: req.body.location,
+    phoneNumber: req.body.phoneNumber,
   });
   try {
     if (req.body.password != req.body.confirmPassword)
